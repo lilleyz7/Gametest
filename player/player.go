@@ -15,7 +15,6 @@ type Player struct {
 	Radius float32
 	Health int32
 	Color  rl.Color
-	Store  []*projectile
 }
 
 func NewPlayer() *Player {
@@ -26,7 +25,6 @@ func NewPlayer() *Player {
 		Radius: RADIUS,
 		Health: HEALTH,
 		Color:  rl.Blue,
-		Store:  []*projectile{},
 	}
 
 }

@@ -52,11 +52,8 @@ func (state *gameState) Update() {
 }
 
 func (state *gameState) CheckCollisions() {
-	fmt.Println("Entered")
-	for _, proj := range state.Player.Store {
-		fmt.Println("We got to stage 2")
+	for _, proj := range player.ProjStore.Shots {
 		for _, enemy := range state.EnemyStore.ActiveEnemies {
-			fmt.Println("We got here: ")
 			hit := rl.CheckCollisionCircles(
 				rl.Vector2{X: proj.PosX, Y: proj.PosY},
 				float32(proj.Radius),

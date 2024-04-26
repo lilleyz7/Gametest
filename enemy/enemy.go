@@ -45,8 +45,12 @@ func (e *enemy) Update(frameTime, time float32) {
 	hit := rl.CheckCollisionCircles(rl.Vector2{X: e.Target.PosX, Y: e.Target.PosY}, e.Target.Radius, e.Pos, e.Radius)
 	if hit {
 		e.TakeDamage(100000000000000)
-	} else {
-		fmt.Println("ok")
+	}
+
+	nums := []int{1, 2, 3, 4, 5}
+
+	for _, val := range nums {
+		fmt.Println(val)
 	}
 
 	e.Rotation = e.UpdateRotation(e.Target)
