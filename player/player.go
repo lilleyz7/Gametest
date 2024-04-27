@@ -9,42 +9,40 @@ const (
 )
 
 type Player struct {
-	PosX   float32
-	PosY   float32
-	Speed  float32
-	Radius float32
-	Health int32
-	Color  rl.Color
+	Position rl.Vector2
+	Speed    float32
+	Radius   float32
+	Health   int32
+	Color    rl.Color
 }
 
 func NewPlayer() *Player {
 	return &Player{
-		PosX:   float32(rl.GetScreenWidth()) / 2,
-		PosY:   float32(rl.GetScreenHeight()) / 2,
-		Speed:  SPEED,
-		Radius: RADIUS,
-		Health: HEALTH,
-		Color:  rl.Blue,
+		Position: rl.Vector2{X: float32(rl.GetScreenWidth()) / 2, Y: float32(rl.GetScreenHeight()) / 2},
+		Speed:    SPEED,
+		Radius:   RADIUS,
+		Health:   HEALTH,
+		Color:    rl.Blue,
 	}
 
 }
 
 func (p *Player) Draw() {
-	rl.DrawCircle(int32(p.PosX), int32(p.PosY), p.Radius, p.Color)
+	rl.DrawCircle(int32(p.Position.X), int32(p.Position.Y), p.Radius, p.Color)
 }
 
 func (p *Player) Update() {
 	if rl.IsKeyDown(rl.KeyUp) || rl.IsKeyDown(rl.KeyW) {
-		p.PosY -= p.Speed
+		p.Position.Y -= p.Speed
 	}
 	if rl.IsKeyDown(rl.KeyDown) || rl.IsKeyDown(rl.KeyS) {
-		p.PosY += p.Speed
+		p.Position.Y += p.Speed
 	}
 	if rl.IsKeyDown(rl.KeyLeft) || rl.IsKeyDown(rl.KeyA) {
-		p.PosX -= p.Speed
+		p.Position.X -= p.Speed
 	}
 	if rl.IsKeyDown(rl.KeyRight) || rl.IsKeyDown(rl.KeyD) {
-		p.PosX += p.Speed
+		p.Position.X += p.Speed
 	}
 	if rl.IsMouseButtonPressed(rl.MouseButtonLeft) {
 		p.FireProjectile()

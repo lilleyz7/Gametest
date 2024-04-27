@@ -42,7 +42,7 @@ func (e *enemy) Update(frameTime, time float32) {
 		e.Active = false
 	}
 
-	hit := rl.CheckCollisionCircles(rl.Vector2{X: e.Target.PosX, Y: e.Target.PosY}, e.Target.Radius, e.Pos, e.Radius)
+	hit := rl.CheckCollisionCircles(rl.Vector2{X: e.Target.Position.X, Y: e.Target.Position.Y}, e.Target.Radius, e.Pos, e.Radius)
 	if hit {
 		e.TakeDamage(100000000000000)
 	}
@@ -60,7 +60,7 @@ func (e *enemy) Update(frameTime, time float32) {
 }
 
 func (e *enemy) UpdateRotation(p *player.Player) float64 {
-	return math.Atan2(float64(p.PosY)-float64(e.Pos.Y), float64(p.PosX)-float64(e.Pos.X))
+	return math.Atan2(float64(p.Position.Y)-float64(e.Pos.Y), float64(p.Position.X)-float64(e.Pos.X))
 }
 
 func (e *enemy) TakeDamage(damage int) {

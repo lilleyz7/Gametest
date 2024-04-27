@@ -37,8 +37,8 @@ func (p *Player) FireProjectile() {
 
 	if ProjStore.LastShotTime+FIRERATE < rl.GetTime() {
 		proj := &projectile{
-			PosX:         p.PosX,
-			PosY:         p.PosY,
+			PosX:         p.Position.X,
+			PosY:         p.Position.Y,
 			Damage:       DAMAGE,
 			Rotation:     p.getRotation(),
 			Speed:        200,
@@ -49,14 +49,13 @@ func (p *Player) FireProjectile() {
 
 		ProjStore.Shots = append(ProjStore.Shots, proj)
 		ProjStore.LastShotTime = rl.GetTime()
-		fmt.Println(len(ProjStore.Shots))
 	} else {
 		fmt.Println("Not enough time")
 	}
 }
 
 func (p *Player) getRotation() float64 {
-	return math.Atan2(float64(rl.GetMouseY())-float64(p.PosY), float64(rl.GetMouseX())-float64(p.PosX))
+	return math.Atan2(float64(rl.GetMouseY())-float64(p.Position.Y), float64(rl.GetMouseX())-float64(p.Position.X))
 }
 
 func DrawProjectiles() {
